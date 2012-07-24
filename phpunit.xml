@@ -1,0 +1,7 @@
+<phpunit bootstrap="./tests/bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="GenPhrase">
+            <directory>./tests/GenPhrase</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
