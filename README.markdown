@@ -85,8 +85,8 @@ $gen->generate(65) // This will output six "word" passphrases.
 
 // Change the separator characters.
 $gen->setSeparators('123456789');
-// NOTE separator characters must be single-byte characters.
-// NOTE you should not use space as a separator character, because space is
+// NOTE: separator characters must be single-byte characters.
+// NOTE: you should not use space as a separator character, because space is
 // automatically used when appropriate.
 
 // Set character encoding. The encoding is used internally by GenPhrase when
