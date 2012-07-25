@@ -28,8 +28,11 @@ diceware.lst. You can add/remove/combine wordlists as you like.
 However, keep in mind the paragraph below.
 
 All the words in wordlists should be lowercase words. Each word must contain
-between 3 and 6 characters, and should be clearly different from each other
+at least 3 characters, and should be clearly different from each other
 (diceware wordlist is an exception).
+
+More about the original english wordlist via Openwall:
+http://cvsweb.openwall.com/cgi/cvsweb.cgi/Owl/packages/passwdqc/passwdqc/wordset_4k.c?rev=1.5;content-type=text%2Fplain
 
 
 Usage
