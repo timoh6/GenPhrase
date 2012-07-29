@@ -48,7 +48,7 @@ Usage
 ``` php
 <?php
 require '/path/to/library/GenPhrase/Loader.php';
-$loader = new Loader();
+$loader = new GenPhrase\Loader();
 $loader->register();
 // Or more simply, use Composer http://getcomposer.org/download/
 // Add something like "genphrase/genphrase": "*" to your composer.json:
