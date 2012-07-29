@@ -90,13 +90,39 @@ $gen->generate(65) // This will output six "word" passphrases.
 $gen->setSeparators('123456789');
 // NOTE: separator characters must be single-byte characters.
 // NOTE: you should not use space as a separator character, because space is
-// automatically used when appropriate.
+// automatically added when appropriate.
 
 // Set character encoding. The encoding is used internally by GenPhrase when
 // calling mb_ functions.
 $gen->setEncoding('iso-8859-1');
 // By default GenPhrase uses utf-8 encoding.
 ```
+
+
+How is entropy calculated?
+--------------------------
+
+As long as we have only unique elements in our wordlist and each element is
+equally likely to be chosen, we can calculate the entropy per "element"
+(usually a word) as follows:
+`log2(count_of_elements)`
+
+If we choose, say, 4 elements, the total entropy is:
+`4 * log2(count_of_elements)`
+
+If we choose 2 elements and one separator element:
+`2 * log2(count_of_elements)` + `log2(count_of_separators)`
+
+By default, GenPhrase will randomly (50/50 change) capitalize words. In terms of
+entropy, this means we are actually doubling the "unique element count" (our
+wordlist has, say, a word "apple", so we could come up with a word "apple" or
+"Apple"):
+`log2(2 * count_of_elements)`
+
+Because of this, it is important to make sure all the words in a wordlist are
+lowercase. We could counter this issue by toggling the case of a word (instead
+of modifying to lower case), but it seems overall more simple to just keep the
+words all lower case in our wordlists.
 
 
 Issues or questions?
