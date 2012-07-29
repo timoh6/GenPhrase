@@ -6,14 +6,17 @@ About
 GenPhrase is a secure passphrase generator for PHP applications. GenPhrase is
 based on passwdqc's pwqgen program. See http://www.openwall.com/passwdqc/
 
-GenPhrase can use arbitary size wordlists (words for a passphrase are selected
-uniformly at random from the wordset).
+GenPhrase can be used to generate secure and easy to memorize random
+passphrases.
+
+GenPhrase can use arbitary size wordlists. Words for a passphrase are selected
+uniformly at random from the wordset.
 
 
 Requirements
 ------------
 
-GenPhrase requires PHP version 5.3 or greater. mbstring extension must be also
+GenPhrase requires PHP version 5.3 or greater. mbstring extension must be
 available if words are modified (e.g. capitalized).
 
 
@@ -33,6 +36,10 @@ at least 3 characters, and should be clearly different from each other
 
 More about the original english wordlist via Openwall:
 http://cvsweb.openwall.com/cgi/cvsweb.cgi/Owl/packages/passwdqc/passwdqc/wordset_4k.c?rev=1.5;content-type=text%2Fplain
+
+The only modification between the GenPhrase english wordlist and the Openwall
+wordlist is we changed all the words to be lowercase.
+
 
 
 Usage
@@ -122,7 +129,7 @@ wordlist has, say, a word "apple", so we could come up with a word "apple" or
 Because of this, it is important to make sure all the words in a wordlist are
 lowercase. We could counter this issue by toggling the case of a word (instead
 of modifying to lower case), but it seems overall more simple to just keep the
-words all lower case in our wordlists.
+words all lowercase in our wordlists.
 
 
 Issues or questions?
