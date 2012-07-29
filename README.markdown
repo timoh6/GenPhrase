@@ -40,6 +40,22 @@ http://cvsweb.openwall.com/cgi/cvsweb.cgi/Owl/packages/passwdqc/passwdqc/wordset
 The only modification between the GenPhrase english wordlist and the Openwall
 wordlist is we changed all the words to be lowercase.
 
+### What kind of passphrases GenPhrase generate?
+
+A few examples to demonstrate the output:
+
+With default settings, the passphrase would be for example like:
+
+    Alter Berlin Paint meaning
+
+Generating a passphrase having 40 bits of entropy:
+
+    musica$Menu&Quota
+
+A passphrase having 50 bits of entropy and separator characters and word
+capitalizing disabled:
+
+    setthenrolegiftdancing
 
 
 Usage
