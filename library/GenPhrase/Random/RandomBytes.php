@@ -21,7 +21,7 @@ class RandomBytes
         // Make sure PHP version is at least 5.3. We do this because
         // mcrypt_create_iv() on older versions of PHP
         // does not give "strong" random data on Windows systems.
-        if (PHP_VERSION >= '5.3' && function_exists('mcrypt_create_iv'))
+        if (version_compare(PHP_VERSION, '5.3.0') >= 0 && function_exists('mcrypt_create_iv'))
         {
             $tmp = mcrypt_create_iv($count, MCRYPT_DEV_URANDOM);
             if ($tmp !== false)
@@ -47,7 +47,7 @@ class RandomBytes
             }
         }
 
-        if ($hasBytes === false && PHP_VERSION >= '5.3.4' && function_exists('openssl_random_pseudo_bytes'))
+        if ($hasBytes === false && version_compare(PHP_VERSION, '5.3.4') >= 0 && function_exists('openssl_random_pseudo_bytes'))
         {
             $tmp = openssl_random_pseudo_bytes($count, $cryptoStrong);
             if ($tmp !== false && $cryptoStrong === true)
