@@ -96,7 +96,7 @@ $gen->removeWordlist('default');
 // $gen->addWordlist('/path/to/GenPhrase/Wordlists/diceware.lst', 'diceware');
 // Or more simply (if you give just a filename, GenPhrase will look this
 // filename from "Wordlists" folder automatically):
-// $gen->addWordlist('diceware.lst', 'diceware');
+$gen->addWordlist('diceware.lst', 'diceware');
 // When creating Diceware phrases, it is recommended not to capitalize any
 // words and not to add separator characters (not even space). To make that
 // happen, we configure GenPhrase a little bit more:
