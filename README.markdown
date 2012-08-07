@@ -32,7 +32,7 @@ However, keep in mind the paragraph below.
 
 All the words in wordlists should be lowercase words. Each word must contain
 at least 3 characters, and should be clearly different from each other
-(diceware wordlist is an exception).
+(Diceware wordlist is an exception).
 
 More about the original english wordlist via Openwall:
 http://cvsweb.openwall.com/cgi/cvsweb.cgi/Owl/packages/passwdqc/passwdqc/wordset_4k.c?rev=1.5;content-type=text%2Fplain
@@ -88,25 +88,28 @@ $gen->generate();
 $gen->generate(46);
 
 // Remove the default (english) wordlist. This is because we want to use only
-// the diceware list. If you add a new wordlist, but you do not remove the
+// the Diceware list. If you add a new wordlist, but you do not remove the
 // default wordlist, then GenPhrase will combine those wordlists.
 $gen->removeWordlist('default');
 
-// Add diceware wordlist.
-$gen->addWordlist('/path/to/GenPhrase/Wordlists/diceware.lst', 'diceware');
-// When creating diceware phrases, it is recommended not to capitalize any
-// words and not to add separators (not even space). To make that happen, we
-// configure GenPhrase a little bit more:
+// Add Diceware wordlist.
+// $gen->addWordlist('/path/to/GenPhrase/Wordlists/diceware.lst', 'diceware');
+// Or more simply (if you give just a filename, GenPhrase will look this
+// filename from "Wordlists" folder automatically):
+// $gen->addWordlist('diceware.lst', 'diceware');
+// When creating Diceware phrases, it is recommended not to capitalize any
+// words and not to add separator characters (not even space). To make that
+// happen, we configure GenPhrase a little bit more:
 $gen->disableSeparators(true); // No separator characters are inserted
 $gen->disableWordModifier(true); // No words are capitalized
 $gen->generate(65) // This will output six "word" passphrases.
 
-// NOTE that diceware wordlist has a few one character "words":
+// NOTE that Diceware wordlist has a few one character "words":
 // !, a, $, ", =, ?, z
 // etc. Also, a few two character words are in the list etc. While the
 // probability of the generated passphrase containing only those short "words"
 // is very low when you generate, say, 6 word passphrase, but it is still good
-// to keep in mind. You should not probable generate low entropy diceware
+// to keep in mind. You should not probable generate low entropy Diceware
 // passhrases at all.
 
 // Change the separator characters.

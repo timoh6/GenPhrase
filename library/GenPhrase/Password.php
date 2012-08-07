@@ -39,7 +39,7 @@ class Password
     
     protected $_encoding = 'utf-8';
     
-    const MIN_WORD_COUNT = 20.0;
+    const MIN_WORD_COUNT = 20;
     
     const MIN_ENTROPY_BITS = 26.0;
     
@@ -107,7 +107,7 @@ class Password
             
             if ($wordBits < 1)
             {
-                throw new \RuntimeException('Words does not contain enough bits to create a passphrase');
+                throw new \RuntimeException('Words does not have enough bits to create a passphrase');
             }
             
             $maxIndex = $count - 1;
