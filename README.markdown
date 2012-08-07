@@ -102,7 +102,7 @@ $gen->addWordlist('diceware.lst', 'diceware');
 // happen, we configure GenPhrase a little bit more:
 $gen->disableSeparators(true); // No separator characters are inserted
 $gen->disableWordModifier(true); // No words are capitalized
-$gen->generate(65) // This will output six "word" passphrases.
+echo $gen->generate(65) // This will output six "word" passphrases.
 
 // NOTE that Diceware wordlist has a few one character "words":
 // !, a, $, ", =, ?, z
