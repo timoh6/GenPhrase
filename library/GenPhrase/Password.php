@@ -110,7 +110,7 @@ class Password
                 throw new \RuntimeException('Words does not have enough bits to create a passphrase');
             }
             
-            $maxIndex = $count - 1;
+            $maxIndex = $count;
             
             if ($this->_disableSeparators === true)
             {
@@ -136,7 +136,7 @@ class Password
 
                 if ($bits > $separatorBits && $useSeparators === true && isset($separators[0]))
                 {
-                    $passPhrase .= $separators[$this->_randomProvider->getElement(strlen($separators) - 1)];
+                    $passPhrase .= $separators[$this->_randomProvider->getElement(strlen($separators))];
                     $bits -= $separatorBits;
                 }
                 else if ($bits > 0 && $this->_disableSeparators === false)
