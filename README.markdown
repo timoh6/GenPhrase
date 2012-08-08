@@ -117,6 +117,8 @@ $gen->setSeparators('123456789');
 // NOTE: separator characters must be single-byte characters.
 // NOTE: you should not use space as a separator character, because space is
 // automatically added when appropriate.
+// NOTE: minimum number of separator characters is 2. If you use setSeparators()
+// to set just one separator character, no separators are used (except ' ').
 
 // Set character encoding. The encoding is used internally by GenPhrase when
 // calling mb_ functions.
