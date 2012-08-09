@@ -81,7 +81,7 @@ class Password
     {
         $bits = (float) $bits;
         $separators = $this->getSeparators();
-        $separatorBits = log(strlen($separators), 2);
+        $separatorBits = $this->precisionFloat(log(strlen($separators), 2));
         $passPhrase = '';
         
         try
@@ -103,7 +103,7 @@ class Password
             {
                 $countForBits = $countForBits * $this->_wordModifier->getWordCountMultipier();
             }
-            $wordBits = log($countForBits, 2);
+            $wordBits = $this->precisionFloat(log($countForBits, 2));
             
             if ($wordBits < 1)
             {
@@ -139,7 +139,7 @@ class Password
                     $passPhrase .= $separators[$this->_randomProvider->getElement(strlen($separators))];
                     $bits -= $separatorBits;
                 }
-                else if ($bits > 0 && $this->_disableSeparators === false)
+                else if ($bits > 0.0 && $this->_disableSeparators === false)
                 {
                     $passPhrase .= ' ';
                 }
@@ -271,5 +271,23 @@ class Password
     public function getRandomProvider()
     {
         return $this->_randomProvider;
+    }
+    
+    /**
+     * Returns a float presenting the supplied number.
+     * 
+     * We use BC Math to avoid rounding errors. We use max. 2 digit precision.
+     * This is because we do not want to take changes that the returned float
+     * will be rounded up.
+     * 
+     * E.g. precisionFloat(log(49667, 2)) will return 15.59 instead
+     * of 15.6.
+     * 
+     * @param int|float $num
+     * @return float
+     */
+    public function precisionFloat($num)
+    {
+        return (float) bcadd($num, 0, 2);
     }
 }

@@ -16,8 +16,8 @@ uniformly at random from the wordset.
 Requirements
 ------------
 
-GenPhrase requires PHP version 5.3 or greater. mbstring extension must be
-available if words are modified (e.g. capitalized).
+GenPhrase requires PHP version 5.3 or greater with BC Math (--enable-bcmath).
+mbstring extension must be available if words are modified (e.g. capitalized).
 
 
 Passphrase generation with GenPhrase

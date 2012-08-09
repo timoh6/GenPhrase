@@ -146,4 +146,21 @@ class GenPhrase_PasswordTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($shouldUse, $obj->makesSenseToUseSeparators($bits, $wordBits, $separatorBits), 'Failed for bits:' . $bits);
         }
     }
+    
+    public function testPrecisionFloatIsNotRounding()
+    {
+        $testData = array();
+        $testData[] = array(log(49667, 2), 15.59);
+        $testData[] = array(log(99334, 2), 16.59);
+        $testData[] = array(log(102837, 2), 16.64);
+        
+        $obj = new GenPhrase\Password();
+        
+        foreach ($testData as $data)
+        {
+            $float = $obj->precisionFloat($data[0]);
+            
+            $this->assertEquals($data[1], $float, 'Failed for num: ' . $data[0]);
+        }
+    }
 }
