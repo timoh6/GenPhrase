@@ -67,12 +67,12 @@ require '/path/to/library/GenPhrase/Loader.php';
 $loader = new GenPhrase\Loader();
 $loader->register();
 // Or more simply, use Composer http://getcomposer.org/download/
-// Add something like "genphrase/genphrase": "*" to your composer.json:
+// Add something like "genphrase/genphrase": "@dev" to your composer.json:
 ```
 ``` json
 {
     "require": {
-        "genphrase/genphrase": "*"
+        "genphrase/genphrase": "@dev"
     }
 }
 ```
