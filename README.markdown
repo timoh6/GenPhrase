@@ -104,6 +104,15 @@ $gen->disableSeparators(true); // No separator characters are inserted
 $gen->disableWordModifier(true); // No words are capitalized
 echo $gen->generate(65) // This will output six "word" passphrases.
 
+// It is possible to force GenPhrase to always use separator characters
+// (whether it "makes sense" or not).
+// For example, if you generate a passphrase having 35 bits of entropy,
+// with default settings, you would get something like: "word1 word2 word3".
+// If you force the usage of separators, you would get something like:
+// "word1!word2*word3".
+$gen->alwaysUseSeparators(true);
+// For possible use cases, see pull request #1.
+
 // NOTE that Diceware wordlist has a few one character "words":
 // !, a, $, ", =, ?, z
 // etc. Also, a few two character words are in the list etc. While the
