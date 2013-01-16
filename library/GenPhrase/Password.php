@@ -33,6 +33,8 @@ class Password
     
     protected $_separators = '-_!$&*+=23456789';
     
+    protected $_alwaysUseSeparators = false;
+
     protected $_disableSeparators = false;
     
     protected $_disableWordModifier = false;
@@ -116,6 +118,10 @@ class Password
             {
                 $useSeparators = false;
             }
+            elseif ($this->_alwaysUseSeparators)
+            {
+                $useSeparators = true;
+            }
             else
             {
                 $useSeparators = $this->makesSenseToUseSeparators($bits, $wordBits, $separatorBits);
@@ -191,7 +197,17 @@ class Password
     {
         $this->_separators = (string) $separators;
     }
-    
+
+    /**
+     * Sets whether to use separators regardless of makesSenseToUseSeparators
+     * 
+     * @param boolean $alwaysUseSeparators
+     */
+    public function alwaysUseSeparators($alwaysUseSeparators)
+    {
+        $this->_alwaysUseSeparators = (bool) $alwaysUseSeparators;
+    }
+
     /**
      * Sets whether to use separator characters or not.
      * 
