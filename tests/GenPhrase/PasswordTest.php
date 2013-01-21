@@ -146,6 +146,38 @@ class GenPhrase_PasswordTest extends PHPUnit_Framework_TestCase
             $this->assertEquals($shouldUse, $obj->makesSenseToUseSeparators($bits, $wordBits, $separatorBits), 'Failed for bits:' . $bits);
         }
     }
+
+    public function testAlwaysUseSeparators()
+    {
+        $wordlistHandler = $this->getMock('GenPhrase\\WordlistHandler\\Filesystem');
+        $wordlistHandler->expects($this->any())
+            ->method('getWordsAsArray')
+            ->will($this->returnValue($this->testWords));
+
+        $wordModifier = $this->getMock('GenPhrase\\WordModifier\\MbCapitalizeFirst');
+        $wordModifier->expects($this->any())
+            ->method('modify')
+            ->will($this->returnValue('test'));
+        $wordModifier->expects($this->any())
+            ->method('getWordCountMultipier')
+            ->will($this->returnValue(1));
+
+        $randomProvider = $this->getMock('GenPhrase\\Random\\Random');
+        $randomProvider->expects($this->any())
+            ->method('getElement')
+            ->will($this->returnValue(0));
+
+        $obj = new GenPhrase\Password($wordlistHandler, $wordModifier, $randomProvider);
+        $obj->setSeparators('$');
+
+        $obj->alwaysUseSeparators(true);
+        $password = $obj->generate(26);
+        $this->assertEquals('test$test$test$test$test$test$test', $password);
+
+        $obj->alwaysUseSeparators(false);
+        $password = $obj->generate(26);
+        $this->assertEquals('test test test test test test test', $password);
+    }
     
     public function testPrecisionFloatIsNotRounding()
     {
