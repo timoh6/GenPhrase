@@ -11,6 +11,10 @@ use GenPhrase\Random\Random as Random;
 /**
  * The Password class clues together all the needed pieces and generates
  * passphrases based on supplied variables.
+ *
+ * The base logic in this class is adapted from passwdqc's pwqgen program,
+ * copyright (c) 2000-2002,2005,2008,2010 by Solar Designer. See:
+ * http://www.openwall.com/passwdqc/
  * 
  * @author timoh <timoh6@gmail.com>
  */
@@ -78,6 +82,7 @@ class Password
      * @return string
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
+     * @throws \RangeException
      */
     public function generate($bits = 50.0)
     {
@@ -99,7 +104,7 @@ class Password
             {
                 throw new \RuntimeException('Wordlist must have at least ' . self::MIN_WORD_COUNT . ' unique words');
             }
-            
+
             $countForBits = $count;
             if ($this->_disableWordModifier !== true)
             {
