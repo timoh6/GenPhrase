@@ -47,6 +47,10 @@ class RandomBytes
             }
         }
 
+        /*
+         * We want to play it safe and disable openssl_random_pseudo_bytes() for now.
+         * This is due to the OpenSSL "PID wrapping bug", which potentially could affect GenPhrase.
+         *
         if ($hasBytes === false && version_compare(PHP_VERSION, '5.3.4') >= 0 && function_exists('openssl_random_pseudo_bytes'))
         {
             $tmp = openssl_random_pseudo_bytes($count, $cryptoStrong);
@@ -56,6 +60,7 @@ class RandomBytes
                 $hasBytes = true;
             }
         }
+        */
 
         if (strlen($bytes) === $count)
         {
