@@ -101,7 +101,7 @@ $gen->addWordlist('diceware.lst', 'diceware');
 // words and not to add separator characters (not even space). To make that
 // happen, we configure GenPhrase a little bit more:
 $gen->disableSeparators(true); // No separator characters are inserted
-$gen->disableWordModifier(true); // No words are capitalized
+$gen->disableWordModifier(true); // No words are capitalized or changed to lower case (words are not modified)
 echo $gen->generate(65) // This will output six "word" passphrases.
 
 // It is possible to force GenPhrase to always use separator characters
@@ -150,16 +150,13 @@ If we choose, say, 4 elements, the total entropy is:
 If we choose 2 elements and one separator element:
 `2 * log2(count_of_elements)` + `log2(count_of_separators)`
 
-By default, GenPhrase will randomly (50/50 change) capitalize words. In terms of
+By default, GenPhrase will randomly (50:50 change) modify the first character of
+a word to either lower or upper case
+("Apple" becomes "apple", "orange" becomes "Orange" etc. In terms of
 entropy, this means we are actually doubling the "unique element count" (our
 wordlist has, say, a word "apple", so we could come up with a word "apple" or
 "Apple"):
 `log2(2 * count_of_elements)`
-
-Because of this, it is important to make sure all the words in a wordlist are
-lowercase. We could counter this issue by toggling the case of a word (instead
-of modifying to lower case), but it seems overall more simple to just keep the
-words all lowercase in our wordlists.
 
 
 Issues or questions?
