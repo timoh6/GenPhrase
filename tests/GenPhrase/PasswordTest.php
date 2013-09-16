@@ -10,6 +10,11 @@ class GenPhrase_PasswordTest extends PHPUnit_Framework_TestCase
                               'test','test','test','test','test',
                               'test','test','test','test','test',
                               'test','test','test','test','test');
+
+    public $testWordsNonUnique = array('test2','test2','test2','test3','test4',
+                                       'test5','test6','test7','test8','test9',
+                                       'test10','test11','test12','test12','test14',
+                                       'test15','test16','test17','test18','test19');
     
     public function testConstructWithoutArguments()
     {
@@ -54,7 +59,7 @@ class GenPhrase_PasswordTest extends PHPUnit_Framework_TestCase
         $obj = new GenPhrase\Password();
         
         $this->assertTrue($obj->getWordlistHandler() instanceof GenPhrase\WordlistHandler\Filesystem);
-        $this->assertTrue($obj->getWordmodifier() instanceof GenPhrase\WordModifier\MbCapitalizeFirst);
+        $this->assertTrue($obj->getWordmodifier() instanceof GenPhrase\WordModifier\MbToggleCaseFirst);
         $this->assertTrue($obj->getRandomProvider() instanceof GenPhrase\Random\Random);
     }
     
@@ -84,26 +89,57 @@ class GenPhrase_PasswordTest extends PHPUnit_Framework_TestCase
         $obj = new GenPhrase\Password();
         $password = $obj->generate($this->entropyHighBits);
     }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testNotEnoughWordsThrowsException()
+    {
+        $wordlistHandler = $this->getMock('GenPhrase\\WordlistHandler\\Filesystem');
+        $wordlistHandler
+            ->expects($this->any())
+            ->method('getWordsAsArray')
+            ->will($this->returnValue(array('a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a')));
+
+        $obj = new GenPhrase\Password($wordlistHandler);
+        $password = $obj->generate();
+    }
+
+    /**
+     * @expectedException \RuntimeException
+     */
+    public function testNotEnoughUniqueWordsThrowsException()
+    {
+        $path = dirname(dirname(dirname(__FILE__))) . DIRECTORY_SEPARATOR . 'Data' . DIRECTORY_SEPARATOR . 'Wordlist' . DIRECTORY_SEPARATOR . 'dublicate_words.lst';
+        $wordlistHandler = new GenPhrase\WordlistHandler\Filesystem(array('path' => $path, 'identifier' => 'test'));
+
+        $obj = new GenPhrase\Password($wordlistHandler);
+        $password = $obj->generate();
+    }
     
     public function testGenerateReturnsExpectedStrings()
     {
         $wordlistHandler = $this->getMock('GenPhrase\\WordlistHandler\\Filesystem');
-        $wordlistHandler->expects($this->any())
-                ->method('getWordsAsArray')
-                ->will($this->returnValue($this->testWords));
+        $wordlistHandler
+            ->expects($this->any())
+            ->method('getWordsAsArray')
+            ->will($this->returnValue($this->testWords));
         
-        $wordModifier = $this->getMock('GenPhrase\\WordModifier\\MbCapitalizeFirst');
-        $wordModifier->expects($this->any())
-                ->method('modify')
-                ->will($this->returnValue('test'));
-        $wordModifier->expects($this->any())
-                ->method('getWordCountMultipier')
-                ->will($this->returnValue(1));
+        $wordModifier = $this->getMock('GenPhrase\\WordModifier\\MbToggleCaseFirst');
+        $wordModifier
+            ->expects($this->any())
+            ->method('modify')
+            ->will($this->returnValue('test'));
+        $wordModifier
+            ->expects($this->any())
+            ->method('getWordCountMultiplier')
+            ->will($this->returnValue(1));
         
         $randomProvider = $this->getMock('GenPhrase\\Random\\Random');
-        $randomProvider->expects($this->any())
-                ->method('getElement')
-                ->will($this->returnValue(0));
+        $randomProvider
+            ->expects($this->any())
+            ->method('getElement')
+            ->will($this->returnValue(0));
         
         $obj = new GenPhrase\Password($wordlistHandler, $wordModifier, $randomProvider);
         $obj->disableSeparators(true);
@@ -150,20 +186,24 @@ class GenPhrase_PasswordTest extends PHPUnit_Framework_TestCase
     public function testAlwaysUseSeparators()
     {
         $wordlistHandler = $this->getMock('GenPhrase\\WordlistHandler\\Filesystem');
-        $wordlistHandler->expects($this->any())
+        $wordlistHandler
+            ->expects($this->any())
             ->method('getWordsAsArray')
             ->will($this->returnValue($this->testWords));
 
-        $wordModifier = $this->getMock('GenPhrase\\WordModifier\\MbCapitalizeFirst');
-        $wordModifier->expects($this->any())
+        $wordModifier = $this->getMock('GenPhrase\\WordModifier\\MbToggleCaseFirst');
+        $wordModifier
+            ->expects($this->any())
             ->method('modify')
             ->will($this->returnValue('test'));
-        $wordModifier->expects($this->any())
-            ->method('getWordCountMultipier')
+        $wordModifier
+            ->expects($this->any())
+            ->method('getWordCountMultiplier')
             ->will($this->returnValue(1));
 
         $randomProvider = $this->getMock('GenPhrase\\Random\\Random');
-        $randomProvider->expects($this->any())
+        $randomProvider
+            ->expects($this->any())
             ->method('getElement')
             ->will($this->returnValue(0));
 

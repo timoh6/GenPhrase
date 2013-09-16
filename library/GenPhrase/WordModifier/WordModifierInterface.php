@@ -8,5 +8,5 @@ interface WordModifierInterface
 {
     public function modify($string, $encoding);
     
-    public function getWordCountMultipier();
+    public function getWordCountMultiplier();
 }

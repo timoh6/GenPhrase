@@ -7,16 +7,22 @@ use GenPhrase\Random\Random as Random;
 /**
  * @author timoh <timoh6@gmail.com>
  */
-class MbCapitalizeFirst implements WordModifierInterface
+class MbToggleCaseFirst implements WordModifierInterface
 {
     /**
      * @var RandomInterface
      */
     protected $_randomProvider = null;
-    
+
+    /**
+     * @var int
+     */
     protected $_probabilityPoolSize = 2;
-    
-    protected $_wordCountMultipier = 2;
+
+    /**
+     * @var int
+     */
+    protected $_wordCountMultiplier = 2;
     
     /**
      * $probabilityPoolSize controls the changes whether to modify the word or
@@ -34,8 +40,7 @@ class MbCapitalizeFirst implements WordModifierInterface
      * @param RandomInterface $randomProvider
      * @param int $probabilityPoolSize 
      */
-    public function __construct(RandomInterface $randomProvider = null,
-                                 $probabilityPoolSize = 2)
+    public function __construct(RandomInterface $randomProvider = null, $probabilityPoolSize = 2)
     {
         if ($randomProvider === null)
         {
@@ -45,13 +50,17 @@ class MbCapitalizeFirst implements WordModifierInterface
         
         $this->_probabilityPoolSize = (int) $probabilityPoolSize;
     }
-    
+
+
     /**
-     * 
-     * @param string The word to modify
+     * Performs case folding on the first character of a supplied word (making it either lower or upper case).
+     * The word is modified, by default, on a 50:50 chance. I.e. we choose a random number 0 or 1, and if we
+     * get 0, we modify the word.
+     *
+     * @param $string
      * @param string $encoding
      * @return string
-     * @throws \RuntimeException | \InvalidArgumentException
+     * @throws \Exception
      */
     public function modify($string, $encoding = 'utf-8')
     {
@@ -65,13 +74,24 @@ class MbCapitalizeFirst implements WordModifierInterface
                 if ($this->_randomProvider->getElement($this->_probabilityPoolSize) === 0)
                 {
                     $character = mb_substr($string, 0, 1, $encoding);
-                    $character = mb_convert_case($character, MB_CASE_UPPER, $encoding);
+                    $upper = mb_strtoupper($character, $encoding);
+                    $lower = mb_strtolower($character, $encoding);
+
+                    if ($character === $upper)
+                    {
+                        $character = $lower;
+                    }
+                    else
+                    {
+                        $character = $upper;
+                    }
+
                     $string = $character . mb_substr($string, 1, $len, $encoding);
                 }
             }
-            catch (Exception $e)
+            catch (\Exception $e)
             {
-                throw new $e;
+                throw $e;
             }
         }
         
@@ -80,10 +100,10 @@ class MbCapitalizeFirst implements WordModifierInterface
     
     /**
      * 
-     * @return int The multipier
+     * @return int The multiplier
      */
-    public function getWordCountMultipier()
+    public function getWordCountMultiplier()
     {
-        return $this->_wordCountMultipier;
+        return $this->_wordCountMultiplier;
     }
 }

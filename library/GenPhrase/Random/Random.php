@@ -45,7 +45,7 @@ class Random implements RandomInterface
         {
             $this->checkPowerOfTwo();
         }
-        catch (Exception $e)
+        catch (\InvalidArgumentException $e)
         {
             throw $e;
         }
@@ -64,6 +64,9 @@ class Random implements RandomInterface
      *
      * @param int $poolSize Size of the pool to choose from.
      * @return int The generated random number within the pool size.
+     * @throws \InvalidArgumentException If provided $poolSize is not between 2 and $_maxPoolSize.
+     * @throws \RangeException If the supplied range is too great to generate.
+     * @throws \RuntimeException If it was not possible to generate random bytes.
      */
     public function getElement($poolSize)
     {
@@ -138,7 +141,7 @@ class Random implements RandomInterface
      * @param int $powerOfTwo
      * @param int $maxPoolSize
      * @return boolean
-     * @throws \InvalidArgumentException
+     * @throws \InvalidArgumentException If $maxPoolSize is greater than $powerOfTwo or supplied $powerOfTwo is not a power of two.
      */
     public function checkPowerOfTwo($powerOfTwo = null, $maxPoolSize = null)
     {
@@ -173,7 +176,7 @@ class Random implements RandomInterface
             $this->checkPowerOfTwo($powerOfTwo);
             $this->_powerOfTwo = $powerOfTwo;
         }
-        catch (Exception $e)
+        catch (\InvalidArgumentException $e)
         {
             throw $e;
         }
@@ -193,7 +196,7 @@ class Random implements RandomInterface
             $this->checkPowerOfTwo(null, $maxPoolSize);
             $this->_maxPoolSize = $maxPoolSize;
         }
-        catch (Exception $e)
+        catch (\InvalidArgumentException $e)
         {
             throw $e;
         }

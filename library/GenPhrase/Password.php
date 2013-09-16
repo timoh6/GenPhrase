@@ -4,7 +4,7 @@ namespace GenPhrase;
 use GenPhrase\WordlistHandler\WordlistHandlerInterface as WordlistHandlerInterface;
 use GenPhrase\WordlistHandler\Filesystem as WordlistHandler;
 use GenPhrase\WordModifier\WordModifierInterface as WordModifierInterface;
-use GenPhrase\WordModifier\MbCapitalizeFirst as WordModifier;
+use GenPhrase\WordModifier\MbToggleCaseFirst as WordModifier;
 use GenPhrase\Random\RandomInterface as RandomInterface;
 use GenPhrase\Random\Random as Random;
 
@@ -34,23 +34,43 @@ class Password
      * @var RandomInterface
      */
     protected $_randomProvider = null;
-    
+
+    /**
+     * @var string The separator characters. Must be single-byte characters.
+     */
     protected $_separators = '-_!$&*+=23456789';
-    
+
+    /**
+     * @var bool Whether to _always_ use separator characters or not (even if using them would not "make sense").
+     */
     protected $_alwaysUseSeparators = false;
 
+    /**
+     * @var bool Whether to disable the use of separator characters or not.
+     */
     protected $_disableSeparators = false;
-    
+
+    /**
+     * @var bool Whether to disable "word mangling" or not. I.e. to disable capitalization.
+     */
     protected $_disableWordModifier = false;
-    
+
+    /**
+     * @var string Character encoding for String functions (for mb_ functions by default).
+     */
     protected $_encoding = 'utf-8';
-    
+
     const MIN_WORD_COUNT = 20;
-    
+
     const MIN_ENTROPY_BITS = 26.0;
-    
+
     const MAX_ENTROPY_BITS = 120.0;
-    
+
+    /**
+     * @param WordlistHandlerInterface $wordlistHandler
+     * @param WordModifierInterface $wordModifier
+     * @param RandomInterface $randomProvider
+     */
     public function __construct(WordlistHandlerInterface $wordlistHandler = null,
                                  WordModifierInterface $wordModifier = null,
                                  RandomInterface $randomProvider = null)
@@ -75,7 +95,7 @@ class Password
     }
     
     /**
-     * Generates a passphrase based on supplied wordlists, seaparators, entropy
+     * Generates a passphrase based on supplied wordlists, separators, entropy
      * bits and word modifier.
      * 
      * @param float $bits
@@ -108,7 +128,7 @@ class Password
             $countForBits = $count;
             if ($this->_disableWordModifier !== true)
             {
-                $countForBits = $countForBits * $this->_wordModifier->getWordCountMultipier();
+                $countForBits = $countForBits * $this->_wordModifier->getWordCountMultiplier();
             }
             $wordBits = $this->precisionFloat(log($countForBits, 2));
             
@@ -123,7 +143,7 @@ class Password
             {
                 $useSeparators = false;
             }
-            elseif ($this->_alwaysUseSeparators)
+            else if ($this->_alwaysUseSeparators)
             {
                 $useSeparators = true;
             }
@@ -135,7 +155,7 @@ class Password
             do
             {
                 $index = $this->_randomProvider->getElement($maxIndex);
-                $word = strtolower($words[$index]);
+                $word = $words[$index];
                 
                 if ($this->_disableWordModifier !== true)
                 {
@@ -157,7 +177,7 @@ class Password
             }
             while ($bits > 0.0);
         }
-        catch (Exception $e)
+        catch (\Exception $e)
         {
             throw $e;
         }
