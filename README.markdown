@@ -25,7 +25,7 @@ Installation note
 
 GenPhrase supports installation using Composer, but currently this is not
 recommended. Composer is vulnerable to MITM attacks and at the time being,
-GenPhrase should be obtained via secure connection using GitHub.
+GenPhrase should be obtained only via secure connection using GitHub.
 
 
 Passphrase generation with GenPhrase
