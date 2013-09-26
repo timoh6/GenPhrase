@@ -20,6 +20,14 @@ GenPhrase requires PHP version 5.3 or greater with BC Math (--enable-bcmath).
 mbstring extension must be available if words are modified (e.g. capitalized).
 
 
+Installation note
+-----------------
+
+GenPhrase supports installation using Composer, but currently this is not
+recommended. Composer is vulnerable to MITM attacks and at the time being,
+GenPhrase should be obtained via secure connection using GitHub.
+
+
 Passphrase generation with GenPhrase
 ------------------------------------
 
@@ -66,15 +74,6 @@ Usage
 require '/path/to/library/GenPhrase/Loader.php';
 $loader = new GenPhrase\Loader();
 $loader->register();
-// Or more simply, use Composer http://getcomposer.org/download/
-// Add something like "genphrase/genphrase": "@dev" to your composer.json:
-```
-``` json
-{
-    "require": {
-        "genphrase/genphrase": "@dev"
-    }
-}
 ```
 ``` php
 <?php
