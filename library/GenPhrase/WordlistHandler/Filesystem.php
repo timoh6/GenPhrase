@@ -72,8 +72,7 @@ class Filesystem implements WordlistHandlerInterface
                 }
             }
         }
-        
-        self::$_words = array_unique(self::$_words);
+        self::$_words = array_values(array_unique(self::$_words));
         
         if (!empty(self::$_words))
         {
