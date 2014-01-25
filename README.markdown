@@ -19,7 +19,7 @@ Requirements
 GenPhrase requires PHP version 5.3 or greater with BC Math (--enable-bcmath).
 mbstring extension must be available if words are modified (e.g. capitalized).
 
-__HHVM__
+__HHVM compatibility__
 
 HipHop VM v2.3 and later is confirmed to support GenPhrase. Earlier versions
 of HHVM may work as well.
