@@ -41,11 +41,6 @@ Those passphrases will have at least 50 bits of entropy.
 
 GenPhrase has currently two built-in wordlists: english.lst (default) and
 diceware.lst. You can add/remove/combine wordlists as you like.
-However, keep in mind the paragraph below.
-
-All the words in wordlists should be lowercase words. Each word must contain
-at least 3 characters, and should be clearly different from each other
-(Diceware wordlist is an exception).
 
 More about the original english wordlist via Openwall:
 http://cvsweb.openwall.com/cgi/cvsweb.cgi/Owl/packages/passwdqc/passwdqc/wordset_4k.c?rev=1.5;content-type=text%2Fplain
@@ -128,7 +123,7 @@ $gen->alwaysUseSeparators(true);
 // Change the separator characters.
 $gen->setSeparators('123456789');
 // NOTE: separator characters must be single-byte characters.
-// NOTE: you should not use space as a separator character, because space is
+// NOTE: you must not use space as a separator character, because space is
 // automatically added when appropriate.
 // NOTE: minimum number of separator characters is 2. If you use setSeparators()
 // to set just one separator character, no separators are used (except ' ').
@@ -156,9 +151,10 @@ If we choose 2 elements and one separator element:
 
 By default, GenPhrase will randomly (50:50 change) modify the first character of
 a word to either lower or upper case
-("Apple" becomes "apple", "orange" becomes "Orange" etc. In terms of
-entropy, this means we are actually doubling the "unique element count" (our
-wordlist has, say, a word "apple", so we could come up with a word "apple" or
+("Apple" becomes "apple", "orange" becomes "Orange" etc.
+
+In terms of entropy, this means we are actually doubling the "unique element count"
+(our wordlist has, say, a word "apple", so we could come up with a word "apple" or
 "Apple"):
 `log2(2 * count_of_elements)`
 
