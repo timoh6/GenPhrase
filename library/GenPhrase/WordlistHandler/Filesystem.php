@@ -28,10 +28,11 @@ class Filesystem implements WordlistHandlerInterface
     
     /**
      * 
-     * @param array $wordlist e.g. array('path' => '/some/path', 'identifier' => 'some_id').
+     * @param array $wordlist e.g. array('path' => '/some/path/to/wordlist', 'identifier' => 'some_id').
      */
     public function __construct(array $wordlist = null)
     {
+        // Default to english.lst
         if ($wordlist === null)
         {
             $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Wordlists' . DIRECTORY_SEPARATOR . 'english.lst';
@@ -47,6 +48,8 @@ class Filesystem implements WordlistHandlerInterface
     }
     
     /**
+     * Returns all the unique lines from a file(s) as a numerically indexed array.
+     * E.g. Array([0] => word1 [1] => word2...).
      * 
      * @return array
      * @throws \RuntimeException

@@ -7,7 +7,7 @@ GenPhrase is a secure passphrase generator for PHP applications. GenPhrase is
 based on passwdqc's pwqgen program. See http://www.openwall.com/passwdqc/
 
 GenPhrase can be used to generate secure and easy to memorize random
-passphrases.
+passphrases. For example output, see [examples](#what-kind-of-passphrases-genphrase-generate).
 
 GenPhrase can use arbitary size wordlists. Words for a passphrase are selected
 uniformly at random from the wordset.
