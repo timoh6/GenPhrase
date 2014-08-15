@@ -214,7 +214,9 @@ class Password
     }
     
     /**
-     * Sets the separator characters. Must be single-byte characters.
+     * Sets the separator characters.
+     * Must be unique single-byte characters.
+     * I.e. setSeparators('123456789-').
      * 
      * @param string $separators
      */
@@ -224,7 +226,7 @@ class Password
     }
 
     /**
-     * Sets whether to use separators regardless of makesSenseToUseSeparators
+     * Sets whether to use separators regardless of makesSenseToUseSeparators.
      * 
      * @param boolean $alwaysUseSeparators
      */
@@ -329,6 +331,6 @@ class Password
      */
     public function precisionFloat($num)
     {
-        return (float) bcadd($num, 0, 2);
+        return (float) bcadd($num, '0', 2);
     }
 }

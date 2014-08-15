@@ -61,4 +61,24 @@ class GenPhrase_Random_RandomTest extends PHPUnit_Framework_TestCase
         
         $obj->setPowerOfTwo(8);
     }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetTooHighPowerOfTwoThrowsException()
+    {
+        $obj = new GenPhrase\Random\Random();
+
+        $obj->setPowerOfTwo(16777217);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetTooHighMaxPoolSizeThrowsException()
+    {
+        $obj = new GenPhrase\Random\Random();
+
+        $obj->setMaxPoolSize(65537);
+    }
 }

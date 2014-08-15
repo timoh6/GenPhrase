@@ -9,6 +9,9 @@ use GenPhrase\Random\RandomBytes;
 
 class Random implements RandomInterface
 {
+    const MAX_ALLOWED_POOL_SIZE = 65536;
+    const MAX_ALLOWED_POWER_OF_TWO = 16777216;
+
     /**
      * Must be <= $_powerOfTwo. See below.
      *
@@ -141,7 +144,7 @@ class Random implements RandomInterface
      * @param int $powerOfTwo
      * @param int $maxPoolSize
      * @return boolean
-     * @throws \InvalidArgumentException If $maxPoolSize is greater than $powerOfTwo or supplied $powerOfTwo is not a power of two.
+     * @throws \InvalidArgumentException If $maxPoolSize is greater than $powerOfTwo or supplied $powerOfTwo is not a power of two or if either $powerOfTwo or $maxPoolSize is greater than their allowed max size.
      */
     public function checkPowerOfTwo($powerOfTwo = null, $maxPoolSize = null)
     {
@@ -151,6 +154,16 @@ class Random implements RandomInterface
         if ($maxPoolSize > $powerOfTwo)
         {
             throw new \InvalidArgumentException('$_powerOfTwo must be >= $_maxPoolSize');
+        }
+
+        if ($maxPoolSize > self::MAX_ALLOWED_POOL_SIZE)
+        {
+            throw new \InvalidArgumentException('$maxPoolSize can not be greater than ' . self::MAX_ALLOWED_POOL_SIZE);
+        }
+
+        if ($powerOfTwo > self::MAX_ALLOWED_POWER_OF_TWO)
+        {
+            throw new \InvalidArgumentException('$powerOfTwo can not be greater than ' . self::MAX_ALLOWED_POWER_OF_TWO);
         }
         
         $isPowerOfTwo = (bool) ($powerOfTwo && !($powerOfTwo & ($powerOfTwo - 1)));
