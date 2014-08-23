@@ -9,8 +9,11 @@ based on passwdqc's pwqgen program. See http://www.openwall.com/passwdqc/
 GenPhrase can be used to generate secure and easy to memorize random
 passphrases. For example output, see [examples](#what-kind-of-passphrases-genphrase-generate).
 
-GenPhrase can use arbitary size wordlists. Words for a passphrase are selected
+GenPhrase can use arbitrary size wordlists. Words for a passphrase are selected
 uniformly at random from the wordset.
+
+GenPhrase has a series of small security bug bounties. For more information, see
+[GenPhrase Security Bug Bounties](http://timoh6.github.io/2014/08/20/GenPhrase-security-bug-bounties.html).
 
 
 Requirements
