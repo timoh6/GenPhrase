@@ -28,12 +28,13 @@ HipHop VM v2.3 and later is confirmed to support GenPhrase. Earlier versions
 of HHVM may work as well.
 
 
-Installation note
------------------
+Installation
+------------
 
-GenPhrase supports installation using Composer, but currently this is not
-recommended. Composer is vulnerable to MITM attacks and at the time being,
-GenPhrase should be obtained only via secure connection using GitHub.
+GenPhrase supports installation using Composer, but make sure you use at least Composer version 1.0.0-beta1
+to install GenPhrase (Composer was vulnerable to MITM attacks before 1.0.0-beta1):
+
+[genphrase/genphrase ](https://packagist.org/packages/genphrase/genphrase)
 
 
 Passphrase generation with GenPhrase
