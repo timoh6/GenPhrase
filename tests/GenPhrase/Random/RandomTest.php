@@ -31,7 +31,7 @@ class GenPhrase_Random_RandomTest extends PHPUnit_Framework_TestCase
         $obj = new GenPhrase\Random\Random($randomByteGenerator);
         $obj->setMaxPoolSize($poolSize);
         $obj->setPowerOfTwo(8192);
-        
+
         for ($i = 0; $i < $poolSize; $i++)
         {
             $element = $obj->getElement($poolSize);
@@ -44,10 +44,10 @@ class GenPhrase_Random_RandomTest extends PHPUnit_Framework_TestCase
                 $elements[$element]++;
             }
         }
-        
+
         $uniqElements = count(array_unique($elements));
         $elementsCount = count($elements);
-        
+
         $this->assertEquals(1, $uniqElements);
         $this->assertEquals($poolSize, $elementsCount);
     }

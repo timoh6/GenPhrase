@@ -52,6 +52,12 @@ http://cvsweb.openwall.com/cgi/cvsweb.cgi/Owl/packages/passwdqc/passwdqc/wordset
 The only modification between the GenPhrase english wordlist and the Openwall
 wordlist is we changed all the words to be lowercase.
 
+Note, the Diceware list bundled with GenPhrase as of 1.1.0 is EFF's "long" version,
+but without four words which contains "-" character
+(as this character is a GenPhrase separator character). For more information
+about EFF's Diceware list, see:
+https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases
+
 ### What kind of passphrases GenPhrase generate?
 
 A few examples to demonstrate the output:
@@ -115,14 +121,6 @@ echo $gen->generate(65) // This will output six "word" passphrases.
 // "word1!word2*word3".
 $gen->alwaysUseSeparators(true);
 // For possible use cases, see pull request #1.
-
-// NOTE that Diceware wordlist has a few one character "words":
-// !, a, $, ", =, ?, z
-// etc. Also, a few two character words are in the list etc. While the
-// probability of the generated passphrase containing only those short "words"
-// is very low when you generate, say, 6 word passphrase, but it is still good
-// to keep in mind. You should not probable generate low entropy Diceware
-// passhrases at all.
 
 // Change the separator characters.
 $gen->setSeparators('123456789');

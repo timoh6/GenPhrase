@@ -17,6 +17,19 @@ class RandomBytes
         $count = (int) $count;
         $bytes = '';
         $hasBytes = false;
+
+		if (version_compare(PHP_VERSION, '7.0.0') >= 0 && function_exists('random_bytes'))
+        {
+            try
+            {
+                $bytes = \random_bytes($count);
+                $hasBytes = true;
+            }
+            catch (\Exception $e)
+            {
+                //
+            }
+        }
         
         // Make sure PHP version is at least 5.3. We do this because
         // mcrypt_create_iv() on older versions of PHP
@@ -62,7 +75,7 @@ class RandomBytes
         }
         */
 
-        if (strlen($bytes) === $count)
+        if (isset($bytes[$count - 1]) && !isset($bytes[$count]))
         {
             return $bytes;
         }
