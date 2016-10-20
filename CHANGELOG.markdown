@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+* 1.1.1 (2016-10-20)
+
+ * Suppress PHP 7.1's mcrypt_create_iv() deprecation warning in RandomBytes.php.
+
 * 1.1.0 (2016-08-17)
 
  * The original Diceware wordlist was replaced by EFF's version, see https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases. Furthermore, GenPhrase uses stripped version of EFF's wordlist. The following four words were removed: drop-down, felt-tip, t-shirt and yo-yo. This was done to avoid a separator character being found in the wordlist words.
