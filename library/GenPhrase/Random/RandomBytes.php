@@ -36,7 +36,8 @@ class RandomBytes
         // does not give "strong" random data on Windows systems.
         if (version_compare(PHP_VERSION, '5.3.0') >= 0 && function_exists('mcrypt_create_iv'))
         {
-            $tmp = mcrypt_create_iv($count, MCRYPT_DEV_URANDOM);
+        	// Suppress deprecation warning in PHP 7.1
+            $tmp = @mcrypt_create_iv($count, MCRYPT_DEV_URANDOM);
             if ($tmp !== false)
             {
                 $bytes = $tmp;
