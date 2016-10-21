@@ -1,8 +1,8 @@
 About
 =====
 
-[![Packagist](https://img.shields.io/packagist/v/genphrase/genphrase.svg?maxAge=2592000)](https://packagist.org/packages/genphrase/genphrase)
-[![License](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)](LICENSE)
+[![Packagist](https://img.shields.io/packagist/v/genphrase/genphrase.svg)](https://packagist.org/packages/genphrase/genphrase)
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 [![Build Status](https://secure.travis-ci.org/timoh6/GenPhrase.png)](http://travis-ci.org/timoh6/GenPhrase)
 
 GenPhrase is a secure passphrase generator for PHP applications. GenPhrase is
