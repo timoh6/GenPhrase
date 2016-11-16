@@ -60,6 +60,10 @@ but without four words which contains "-" character
 about EFF's Diceware list, see:
 https://www.eff.org/deeplinks/2016/07/new-wordlists-random-passphrases
 
+Note, GenPhrase allows you to specify separator characters which may be used between the words.
+If you want to specify these separator characters, make sure you use only unique single-byte characters.
+More information about setting separator characters is in the usage examples below.
+
 ### What kind of passphrases GenPhrase generate?
 
 A few examples to demonstrate the output:
@@ -126,7 +130,7 @@ $gen->alwaysUseSeparators(true);
 
 // Change the separator characters.
 $gen->setSeparators('123456789');
-// NOTE: separator characters must be single-byte characters.
+// NOTE: separator characters must be unique single-byte characters.
 // NOTE: you must not use space as a separator character, because space is
 // automatically added when appropriate.
 // NOTE: minimum number of separator characters is 2. If you use setSeparators()
