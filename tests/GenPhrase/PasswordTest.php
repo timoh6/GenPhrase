@@ -99,7 +99,7 @@ class GenPhrase_PasswordTest extends PHPUnit_Framework_TestCase
         $wordlistHandler
             ->expects($this->any())
             ->method('getWordsAsArray')
-            ->will($this->returnValue(array('a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a','a')));
+            ->will($this->returnValue(array('a')));
 
         $obj = new GenPhrase\Password($wordlistHandler);
         $password = $obj->generate();

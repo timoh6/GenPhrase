@@ -60,7 +60,7 @@ class Password
      */
     protected $_encoding = 'utf-8';
 
-    const MIN_WORD_COUNT = 20;
+    const MIN_WORD_COUNT = 2;
 
     const MIN_ENTROPY_BITS = 26.0;
 
