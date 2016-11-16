@@ -167,8 +167,16 @@ class Password
 
                 if ($bits > $separatorBits && $useSeparators === true && isset($separators[0]))
                 {
-                    $passPhrase .= $separators[$this->_randomProvider->getElement(strlen($separators))];
-                    $bits -= $separatorBits;
+					// At least two separator characters
+					if (isset($separators[1]))
+					{
+						$passPhrase .= $separators[$this->_randomProvider->getElement(strlen($separators))];
+						$bits -= $separatorBits;
+					}
+					else
+					{
+						$passPhrase .= $separators[0];
+					}
                 }
                 else if ($bits > 0.0 && $this->_disableSeparators === false)
                 {
@@ -207,10 +215,30 @@ class Password
     /**
      * 
      * @return string
+	 * @throws \InvalidArgumentException
      */
     public function getSeparators()
     {
-        return $this->_separators;
+		$separators = $this->_separators;
+		$separator_characters_array = array();
+		$length = strlen($separators);
+
+		for ($i = 0; $i < $length; $i++)
+		{
+			$separator_characters_array[] = $separators[$i];
+		}
+
+		$separator_characters_array = array_values(array_unique($separator_characters_array));
+		$separators_string = implode('', $separator_characters_array);
+
+		if (strlen($separators_string) > 0)
+		{
+			return $separators_string;
+		}
+		else
+		{
+			throw new \InvalidArgumentException('Separator characters must contain at least one unique character.');
+		}
     }
     
     /**

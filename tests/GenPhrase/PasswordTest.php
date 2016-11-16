@@ -218,6 +218,28 @@ class GenPhrase_PasswordTest extends PHPUnit_Framework_TestCase
         $password = $obj->generate(26);
         $this->assertEquals('test test test test test test test', $password);
     }
+
+    public function testSeparatorsAreUnique()
+	{
+		$obj = new GenPhrase\Password();
+
+		$obj->setSeparators('$$');
+		$this->assertEquals('$', $obj->getSeparators());
+
+		$obj->setSeparators('112334566');
+		$this->assertEquals('123456', $obj->getSeparators());
+	}
+
+	/**
+	 * @expectedException \InvalidArgumentException
+	 */
+	public function testEmptySeparatorsThowsException()
+	{
+		$obj = new GenPhrase\Password();
+
+		$obj->setSeparators('');
+		$password = $obj->generate();
+	}
     
     public function testPrecisionFloatIsNotRounding()
     {
