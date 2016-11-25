@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+* 1.2.0 (2016-11-25)
+
+ * Minimum element limit in wordlist was lowered to two elements.
+ * Allow setting just one separator character.
+ * Make sure to return only unique separator characters. This fixes a security bug which occurred if separator characters was configured incorrectly.
+
 * 1.1.1 (2016-10-20)
 
  * Suppress PHP 7.1's mcrypt_create_iv() deprecation warning in RandomBytes.php.
