@@ -178,7 +178,7 @@ class Password
 						$passPhrase .= $separators[0];
 					}
                 }
-                else if ($bits > 0.0 && $this->_disableSeparators === false)
+                else if ($bits > 0.0)
                 {
                     $passPhrase .= ' ';
                 }

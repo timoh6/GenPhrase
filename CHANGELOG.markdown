@@ -1,11 +1,15 @@
 CHANGELOG
 =========
 
+* 1.2.1 (2017-03-06)
+
+ * [SECURITY] Use space character to separate words even if disableSeparators() is set to true. This fixes a security bug when words collide, i.e. "act orbit" and "actor bit" both gets returned as "actorbit". With the default word list this inflicts a slightly non-uniform distribution. The Diceware list is not affected by this bug. (Thanks Solar Designer!)
+
 * 1.2.0 (2016-11-25)
 
  * Minimum element limit in wordlist was lowered to two elements.
  * Allow setting just one separator character.
- * Make sure to return only unique separator characters. This fixes a security bug which occurred if separator characters was configured incorrectly.
+ * [SECURITY] Make sure to return only unique separator characters. This fixes a security bug which occurred if separator characters was configured incorrectly.
 
 * 1.1.1 (2016-10-20)
 

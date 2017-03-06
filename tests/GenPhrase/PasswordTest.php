@@ -145,13 +145,13 @@ class GenPhrase_PasswordTest extends PHPUnit_Framework_TestCase
         $obj->disableSeparators(true);
         
         $password = $obj->generate(26);
-        $this->assertEquals('testtesttesttesttesttesttest', $password);
+        $this->assertEquals('test test test test test test test', $password);
         
         $password = $obj->generate(36);
-        $this->assertEquals('testtesttesttesttesttesttesttesttest', $password);
+        $this->assertEquals('test test test test test test test test test', $password);
         
         $password = $obj->generate(50);
-        $this->assertEquals('testtesttesttesttesttesttesttesttesttesttesttest', $password);
+        $this->assertEquals('test test test test test test test test test test test test', $password);
     }
     
     public function testMakesSenseToUseSeparators()

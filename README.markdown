@@ -113,9 +113,9 @@ $gen->removeWordlist('default');
 // filename from "Wordlists" folder automatically):
 $gen->addWordlist('diceware.lst', 'diceware');
 // When creating Diceware phrases, it is recommended not to capitalize any
-// words and not to add separator characters (not even space). To make that
+// words and not to add separator characters (except space, which gets automatically added). To make that
 // happen, we configure GenPhrase a little bit more:
-$gen->disableSeparators(true); // No separator characters are inserted
+$gen->disableSeparators(true); // No separator characters are inserted (except space)
 $gen->disableWordModifier(true); // No words are capitalized or changed to lower case (words are not modified)
 echo $gen->generate(65) // This will output six "word" passphrases.
 
