@@ -7,7 +7,7 @@ class GenPhrase_WordModifier_MbToggleCaseFirstTest extends \PHPUnit\Framework\Te
         $word = 'äbcd';
         $expected = 'Äbcd';
 
-        $randomProvider = $this->getMock('GenPhrase\\Random\\Random');
+        $randomProvider = $this->createMock('GenPhrase\\Random\\Random');
         $randomProvider
             ->expects($this->once())
             ->method('getElement')
@@ -24,7 +24,7 @@ class GenPhrase_WordModifier_MbToggleCaseFirstTest extends \PHPUnit\Framework\Te
         $word = 'Äbcd';
         $expected = 'äbcd';
 
-        $randomProvider = $this->getMock('GenPhrase\\Random\\Random');
+        $randomProvider = $this->createMock('GenPhrase\\Random\\Random');
         $randomProvider
             ->expects($this->once())
             ->method('getElement')

@@ -95,7 +95,7 @@ class GenPhrase_PasswordTest extends \PHPUnit\Framework\TestCase
      */
     public function testNotEnoughWordsThrowsException()
     {
-        $wordlistHandler = $this->getMock('GenPhrase\\WordlistHandler\\Filesystem');
+        $wordlistHandler = $this->createMock('GenPhrase\\WordlistHandler\\Filesystem');
         $wordlistHandler
             ->expects($this->any())
             ->method('getWordsAsArray')
@@ -119,13 +119,13 @@ class GenPhrase_PasswordTest extends \PHPUnit\Framework\TestCase
     
     public function testGenerateReturnsExpectedStrings()
     {
-        $wordlistHandler = $this->getMock('GenPhrase\\WordlistHandler\\Filesystem');
+        $wordlistHandler = $this->createMock('GenPhrase\\WordlistHandler\\Filesystem');
         $wordlistHandler
             ->expects($this->any())
             ->method('getWordsAsArray')
             ->will($this->returnValue($this->testWords));
         
-        $wordModifier = $this->getMock('GenPhrase\\WordModifier\\MbToggleCaseFirst');
+        $wordModifier = $this->createMock('GenPhrase\\WordModifier\\MbToggleCaseFirst');
         $wordModifier
             ->expects($this->any())
             ->method('modify')
@@ -135,7 +135,7 @@ class GenPhrase_PasswordTest extends \PHPUnit\Framework\TestCase
             ->method('getWordCountMultiplier')
             ->will($this->returnValue(1));
         
-        $randomProvider = $this->getMock('GenPhrase\\Random\\Random');
+        $randomProvider = $this->createMock('GenPhrase\\Random\\Random');
         $randomProvider
             ->expects($this->any())
             ->method('getElement')
@@ -185,13 +185,13 @@ class GenPhrase_PasswordTest extends \PHPUnit\Framework\TestCase
 
     public function testAlwaysUseSeparators()
     {
-        $wordlistHandler = $this->getMock('GenPhrase\\WordlistHandler\\Filesystem');
+        $wordlistHandler = $this->createMock('GenPhrase\\WordlistHandler\\Filesystem');
         $wordlistHandler
             ->expects($this->any())
             ->method('getWordsAsArray')
             ->will($this->returnValue($this->testWords));
 
-        $wordModifier = $this->getMock('GenPhrase\\WordModifier\\MbToggleCaseFirst');
+        $wordModifier = $this->createMock('GenPhrase\\WordModifier\\MbToggleCaseFirst');
         $wordModifier
             ->expects($this->any())
             ->method('modify')
@@ -201,7 +201,7 @@ class GenPhrase_PasswordTest extends \PHPUnit\Framework\TestCase
             ->method('getWordCountMultiplier')
             ->will($this->returnValue(1));
 
-        $randomProvider = $this->getMock('GenPhrase\\Random\\Random');
+        $randomProvider = $this->createMock('GenPhrase\\Random\\Random');
         $randomProvider
             ->expects($this->any())
             ->method('getElement')
