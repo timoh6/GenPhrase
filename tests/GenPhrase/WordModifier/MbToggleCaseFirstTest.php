@@ -1,6 +1,6 @@
 <?php
 
-class GenPhrase_WordModifier_MbToggleCaseFirstTest extends PHPUnit_Framework_TestCase
+class GenPhrase_WordModifier_MbToggleCaseFirstTest extends \PHPUnit\Framework\TestCase
 {
     public function testModifyCapitalizes()
     {

@@ -1,6 +1,6 @@
 <?php
 
-class GenPhrase_Random_RandomTest extends PHPUnit_Framework_TestCase
+class GenPhrase_Random_RandomTest extends \PHPUnit\Framework\TestCase
 {
     /**
     * @expectedException \InvalidArgumentException

@@ -1,6 +1,6 @@
 <?php
 
-class GenPhrase_WordlistHandler_FilesystemTest extends PHPUnit_Framework_TestCase
+class GenPhrase_WordlistHandler_FilesystemTest extends \PHPUnit\Framework\TestCase
 {
     public function testContainsNoDuplicates()
     {

@@ -8,4 +8,3 @@ php:
   - 7.1
   - 7.2
   - hhvm
-script: phpunit --bootstrap tests/bootstrap.php

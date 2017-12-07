@@ -1,6 +1,6 @@
 <?php
 
-class GenPhrase_PasswordTest extends PHPUnit_Framework_TestCase
+class GenPhrase_PasswordTest extends \PHPUnit\Framework\TestCase
 {
     public $entropyLowBits = 25;
     
