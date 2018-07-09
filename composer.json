@@ -8,7 +8,17 @@
   "require": {
     "php": ">=5.3.0"
   },
+  "require-dev": {
+    "phpunit/phpunit": "^5.5 || ^6.5"
+  },
   "autoload": {
-    "psr-0": {"GenPhrase": "library/"}
+    "psr-4": {
+      "GenPhrase\\": "library/GenPhrase"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "GenPhrase\\Tests\\": "tests/GenPhrase"
+    }
   }
 }
