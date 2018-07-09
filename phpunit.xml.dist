@@ -4,4 +4,9 @@
             <directory>./tests/GenPhrase</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist>
+            <directory suffix=".php">library</directory>
+        </whitelist>
+    </filter>
 </phpunit>

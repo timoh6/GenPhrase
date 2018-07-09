@@ -1,6 +1,11 @@
 <?php
 
-class GenPhrase_WordModifier_MbToggleCaseFirstTest extends \PHPUnit\Framework\TestCase
+namespace GenPhrase\Tests;
+
+use GenPhrase\WordModifier\MbToggleCaseFirst;
+use PHPUnit\Framework\TestCase;
+
+class GenPhraseWordModifierMbToggleCaseFirstTest extends TestCase
 {
     public function testModifyCapitalizes()
     {
@@ -12,10 +17,10 @@ class GenPhrase_WordModifier_MbToggleCaseFirstTest extends \PHPUnit\Framework\Te
             ->expects($this->once())
             ->method('getElement')
             ->will($this->returnValue(0));
-        
-        $obj = new GenPhrase\WordModifier\MbToggleCaseFirst($randomProvider);
+
+        $obj = new MbToggleCaseFirst($randomProvider);
         $test = $obj->modify($word);
-        
+
         $this->assertEquals($expected, $test);
     }
 
@@ -30,7 +35,7 @@ class GenPhrase_WordModifier_MbToggleCaseFirstTest extends \PHPUnit\Framework\Te
             ->method('getElement')
             ->will($this->returnValue(0));
 
-        $obj = new GenPhrase\WordModifier\MbToggleCaseFirst($randomProvider);
+        $obj = new MbToggleCaseFirst($randomProvider);
         $test = $obj->modify($word);
 
         $this->assertEquals($expected, $test);

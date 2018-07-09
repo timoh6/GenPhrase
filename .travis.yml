@@ -5,4 +5,9 @@ php:
   - 7.0
   - 7.1
   - 7.2
-#  - hhvm Remove hhvm for now
+
+before_script:
+  - composer install --no-interaction
+
+script:
+  - php vendor/bin/phpunit
