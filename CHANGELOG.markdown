@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+* 1.3.0 (???)
+
+ * Allow 1048576 as max. word list size.
+ * Add bcmath extension as a dependency. (Thanks @omnicolor!)
+ * Test enhancements. (Thanks @peter279k!)
+
 * 1.2.1 (2017-03-06)
 
  * [SECURITY] Use space character to separate words even if disableSeparators() is set to true. This fixes a security bug when words collide, i.e. "act orbit" and "actor bit" both gets returned as "actorbit". With the default word list this inflicts a slightly non-uniform distribution. The Diceware list is not affected by this bug. (Thanks Solar Designer!)
