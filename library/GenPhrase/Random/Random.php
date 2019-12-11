@@ -9,27 +9,27 @@ use GenPhrase\Random\RandomBytes;
 
 class Random implements RandomInterface
 {
-    const MAX_ALLOWED_POOL_SIZE = 65536;
-    const MAX_ALLOWED_POWER_OF_TWO = 16777216;
+    const MAX_ALLOWED_POOL_SIZE = 1048576;
+    const MAX_ALLOWED_POWER_OF_TWO = 67108864;
 
     /**
      * Must be <= $_powerOfTwo. See below.
      *
      * @var int 
      */
-    protected $_maxPoolSize = 65536;
+    protected $_maxPoolSize = 1048576;
     
     /**
-     * Must be a power of two, for example 2^24 (16 777 216). In the security
+     * Must be a power of two, for example 2^26 (67 108 864). In the security
      * point of view, must be >= $_maxPoolSize. In the efficiency point of view,
      * should be considerably greater than $_maxPoolSize. As we default to
-     * 65536 $_maxPoolSize (which should be easily enough for wordlists), using
-     * 2^24 as our $_powerOfTwo should be enough to keep the probability of
+     * 1048576 $_maxPoolSize (which should be now finally easily enough for wordlists), using
+     * 2^26 as our $_powerOfTwo should be enough to keep the probability of
      * having to throw "intermediate" results away low. 
      * 
      * @var int
      */
-    protected $_powerOfTwo = 16777216;
+    protected $_powerOfTwo = 67108864;
     
     /**
      * @var RandomBytes

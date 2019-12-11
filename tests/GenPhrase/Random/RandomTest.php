@@ -25,7 +25,7 @@ class GenPhraseRandomRandomTest extends TestCase
     {
         $obj = new Random();
 
-        $obj->getElement(65537);
+        $obj->getElement(1048577);
     }
 
     public function testGetElementGivesUniformDistribution()
@@ -72,7 +72,7 @@ class GenPhraseRandomRandomTest extends TestCase
     {
         $obj = new Random();
 
-        $obj->setPowerOfTwo(16777217);
+        $obj->setPowerOfTwo(67108865);
     }
 
     /**
@@ -82,6 +82,6 @@ class GenPhraseRandomRandomTest extends TestCase
     {
         $obj = new Random();
 
-        $obj->setMaxPoolSize(65537);
+        $obj->setMaxPoolSize(1048577);
     }
 }
