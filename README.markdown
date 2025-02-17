@@ -5,8 +5,8 @@ About
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](LICENSE)
 [![Build Status](https://secure.travis-ci.org/timoh6/GenPhrase.png)](http://travis-ci.org/timoh6/GenPhrase)
 
-[!NOTE]
-Sadly, GenPhrase hasn't had any updates in quite a long while. Future development
+> [!NOTE]
+> Sadly, GenPhrase hasn't had any updates in quite a long while. Future development
 and maintenance of GenPhrase will be at [Drenso/GenPhrase](https://github.com/Drenso/GenPhrase)
 
 GenPhrase is a secure passphrase generator for PHP applications. GenPhrase is
